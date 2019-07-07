@@ -1,6 +1,6 @@
-package gettestie.src.main.java.rocks.zipcode;
+package java.rocks.zipcode;
 
-public class Address {
+public class Address implements Comparable<Address>{
     private String street;
     private String town;
     private String postCode;
@@ -28,5 +28,22 @@ public class Address {
      */
     public String toString() {
         return street + "\n" + town + " " + postCode + "\n" + country + "\n";
+    }
+
+    @Override
+    public int compareTo(Address o) {
+        int countrycompare = this.country.compareTo(o.country);
+        if(countrycompare != 0) {
+            return countrycompare;
+        }
+        int postalcompare = this.postCode.compareTo(o.postCode);
+        if(postalcompare != 0) {
+            return postalcompare;
+        }
+        int townCompare = this.town.compareTo(o.town);
+        if(townCompare !=0 ){
+            return townCompare;
+        }
+        return this.street.compareTo(o.street);
     }
 }
